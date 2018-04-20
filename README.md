@@ -65,7 +65,7 @@ End with an example of getting some data out of the system or using it for a lit
 ```
      
 
-### Entity analyze
+### Entity Extraction
 
 Pass text content or text content file
 
@@ -77,14 +77,14 @@ or
 nlp_client --entities -tf sample-content.txt
 ```
 
-### Syntex anylyze
+### Syntax Extraction
 
 if your query is quite long, you can save it to text file and pass the path of it
 ```
 nlp_client --syntax -t "hello world"
 ```
 
-### Sentiment analyze
+### Sentiment Extraction
 
 In default it will substitute current date into template fields. but if you want to change the date value you can pass manually using start date parameter
 
