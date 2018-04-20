@@ -31,7 +31,7 @@ pip install -e .
 ##### Linux/Mac: 
 ```bash
 virtualenv venv
-activate venv/bin/activate
+. venv/bin/activate
 pip install -e .
 ```
 ##### Windows:
