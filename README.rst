@@ -81,7 +81,7 @@ nlp_client --entities -tf sample-content.txt
 
 if your query is quite long, you can save it to text file and pass the path of it
 ```
-nlp_client --syntax -t "hello world"
+nlp_client --syntax -t "hello world" -sf service_acc.json
 ```
 
 ### Sentiment Extraction
@@ -89,6 +89,6 @@ nlp_client --syntax -t "hello world"
 In default it will substitute current date into template fields. but if you want to change the date value you can pass manually using start date parameter
 
 ```
-nlp_client --sentiment -t "hello world"
+nlp_client --sentiment -t "hello world" -sf service_acc.json
 ```
 
