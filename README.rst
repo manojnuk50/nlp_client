@@ -22,8 +22,8 @@ pip install -U virtualenv
 Create seperate python virutal environment and install dependancey pacakges
 
 ```
-git clone https://gitlab.com/manojnuk50/GCPUtility
-cd GCPUtility
+git clone https://github.com/manojnuk50/nlp_client.git
+cd nlp_client
 virtualenv venv
 activate venv/bin/activate
 pip install -e .
