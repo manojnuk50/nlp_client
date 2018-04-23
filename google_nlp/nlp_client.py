@@ -29,17 +29,17 @@ def main():
 
         if args.entities:
             if args.text:
-                print nlp_utils.analyze_entities_v1(text=args.text)
+                print nlp_utils.analyze_entities(text=args.text)
             else:
                 with open(args.text_file) as file_cursor:
-                    print nlp_utils.analyze_entities_v1(text=file_cursor.readlines())
+                    print nlp_utils.analyze_entities(text=file_cursor.readlines())
 
         if args.syntax:
             if args.text:
-                print nlp_utils.analyze_syntax_v1(text=args.text)
+                print nlp_utils.analyze_syntax(text=args.text)
             else:
                 with open(args.text_file) as file_cursor:
-                    print nlp_utils.analyze_syntax_v1(text=file_cursor.readlines())
+                    print nlp_utils.analyze_syntax(text=file_cursor.readlines())
 
         if args.sentiment:
             if args.text:
@@ -47,18 +47,17 @@ def main():
             else:
                 with open(args.text_file) as file_cursor:
                     print nlp_utils.analyze_sentiment(text=file_cursor.readlines())
+
+        if args.catagories:
+            if args.text:
+                print nlp_utils.get_text_classify(text=args.text)
+            else:
+                with open(args.text_file) as file_cursor:
+                    print nlp_utils.get_text_classify(text=file_cursor.readlines())
+
     except Exception as e:
         logging.info(e)
         raise Exception(e)
-
-    if args.catagories:
-        if args.text:
-            print nlp_utils.get_text_classify(text=args.text)
-        else:
-            with open(args.text_file) as file_cursor:
-                print nlp_utils.get_text_classify(text=file_cursor.readlines())
-
-
 
 
 

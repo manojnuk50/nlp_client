@@ -148,6 +148,7 @@ class NLPUtils():
     def analyze_syntax_v1(self, text, verbose=True):
         """Classify the input text into categories. """
         try:
+            self._authorize()
             language_client = self.get_language_service()
 
             document = language.types.Document(
@@ -161,6 +162,7 @@ class NLPUtils():
     def analyze_sentiment_v1(self, text, verbose=True):
         """Classify the input text into categories. """
         try:
+            self._authorize()
             language_client = self.get_language_service()
 
             document = language.types.Document(
@@ -174,6 +176,7 @@ class NLPUtils():
     def analyze_entities_v1(self, text, verbose=True):
         """Classify the input text into categories. """
         try:
+            self._authorize()
             language_client = self.get_language_service()
 
             document = language.types.Document(
