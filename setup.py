@@ -28,7 +28,7 @@ setup(
     author_email='manojkumar.vsj@gmail.com',  # Optional
     keywords='nlp python',  # Optional
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),  # Required
-    install_requires=['google-api-python-client==1.6.6'],  # Optional
+    install_requires=['google-api-python-client==1.6.6', 'google-cloud==0.32.0'],  # Optional
     extras_require={  # Optional
         'dev': ['check-manifest'],
         'test': ['coverage'],

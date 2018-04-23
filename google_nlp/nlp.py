@@ -4,7 +4,7 @@
 import sys
 import time
 import logging
-#from google.cloud import language
+from google.cloud import language
 from googleapiclient import discovery
 import httplib2
 from googleapiclient.errors import HttpError
@@ -24,6 +24,7 @@ class NLPUtils():
                  **kwargs):
         self.service_account_path =  service_account_path
         self.scope=scope
+        self.credentials = None
 
     def _authorize(self):
         """
@@ -50,7 +51,11 @@ class NLPUtils():
                 raise Exception('Unrecognised extension for key file.')
 
         http = httplib2.Http()
+        self.credentials = credentials
         return credentials.authorize(http)
+
+    def get_language_service(self):
+        return language.LanguageServiceClient(credentials=self.credentials)
 
     def get_service(self):
         http_authorized = self._authorize()
@@ -127,23 +132,55 @@ class NLPUtils():
 
         return response
 
-    # def get_language_client(self):
-    #     return language.LanguageServiceClient()
-    #
-    # def get_text_classify(self, text, verbose=True):
-    #     """Classify the input text into categories. """
-    #     try:
-    #         language_client = language.LanguageServiceClient()
-    #
-    #         document = language.types.Document(
-    #             content=text,
-    #             type=language.enums.Document.Type.PLAIN_TEXT)
-    #         response = language_client.classify_text(document)
-    #         categories = response.categories
-    #         return categories
-    #     except Exception, e:
-    #         logging.info(e)
-    #         return [{'category': None, 'confidence': 0}]
+    def get_text_classify(self, text, verbose=True):
+        """Classify the input text into categories. """
+        try:
+            language_client = self.get_language_service()
 
+            document = language.types.Document(
+                content=text,
+                type=language.enums.Document.Type.PLAIN_TEXT)
+            return language_client.classify_text(document).categories
+        except Exception, e:
+            logging.error(e)
+            raise Exception(e)
 
+    def analyze_syntax_v1(self, text, verbose=True):
+        """Classify the input text into categories. """
+        try:
+            language_client = self.get_language_service()
+
+            document = language.types.Document(
+                content=text,
+                type=language.enums.Document.Type.PLAIN_TEXT)
+            return language_client.analyze_syntax(document).tokens
+        except Exception, e:
+            logging.error(e)
+            raise Exception(e)
+
+    def analyze_sentiment_v1(self, text, verbose=True):
+        """Classify the input text into categories. """
+        try:
+            language_client = self.get_language_service()
+
+            document = language.types.Document(
+                content=text,
+                type=language.enums.Document.Type.PLAIN_TEXT)
+            return language_client.analyze_sentiment(document).document_sentiment
+        except Exception, e:
+            logging.error(e)
+            raise Exception(e)
+
+    def analyze_entities_v1(self, text, verbose=True):
+        """Classify the input text into categories. """
+        try:
+            language_client = self.get_language_service()
+
+            document = language.types.Document(
+                content=text,
+                type=language.enums.Document.Type.PLAIN_TEXT)
+            return language_client.analyze_entities(document).entities
+        except Exception, e:
+            logging.error(e)
+            raise Exception(e)
 
